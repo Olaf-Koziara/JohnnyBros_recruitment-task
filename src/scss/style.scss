@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+@import 'base/normalize';
+
+@import 'utils/variables';
+@import 'utils/functions';
+@import 'utils/mixins';
+
+@import 'base/main';
+@import 'base/typography';
+
+@import 'layouts/grid';
+
+@import 'components/icon';
+@import 'components/instructions';
+@import 'components/placeholder';
+@import 'components/ranking-table';
+
+@import 'pages/task';
