@@ -12,30 +12,37 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="ranking-table">
-					<div class="ranking-table__header">
-						<img src="assets/table_logo.svg" class="ranking-table__logo" alt="Premier League" title="Premier League">
+					<div class="ranking-table__header"> 
+						<img src="assets/table_logo.svg" class="ranking-table__logo js-inlinesvg" >
 						<h1 class="ranking-table__title">Premier League</h1>
-						<div class="ranking-table__search">
-						<input type="text" class="ranking-table__search-input" placeholder="Search for team">
-						<img src="assets/icons/search.svg" class="ranking-table__search-icon" alt="Search" title="Search">
-						</div>
+							<div class="ranking-table__search-wrapper">
+								<form class="ranking-table__search" role="search">
+									<input type="text" class="ranking-table__search-input" placeholder="Search for team">
+									<button class="ranking-table__search-clear js-inlinesvg"><img src="assets/icons/x-icon.svg" alt="Clear search"></button>
+								</form>
+							</div>
 					</div>
+					
 					<ul class="ranking-table__list">
 						<li class="ranking-table__item ranking-table__item--skeleton">
+							<div>
+								<div class="ranking-table__item-rank"> </div>
+								<div>
 							<div class="ranking-table__item-header">
-							<div class="ranking-table__item-rank"> </div>
-							<div class="ranking-table__item-name"> </div>
-							</div>
+							<div class="ranking-table__item-name"> </div> 
+	
 							<div class="ranking-table__item-stats"></div>
 							<div class="ranking-table__item-points"> </div>
+							</div>
 							<div class="ranking-table__item-footer">
 							<div class="ranking-table__item-form"> </div>
 							<div class="ranking-table__item-goals"> </div>	
+							
 							</div>
 						</li>
 					</ul>
 				</div>
-				<div class="instructions">
+				<!-- <div class="instructions">
 					<div class="instructions__segment">
 						<a class="instructions__logo-wrapper" target="_blank" href="https://johnnybros.com/">
 							<img src="assets/logo.svg" class="instructions__logo" alt="johnnybros" title="JohnnyBros">
@@ -89,7 +96,7 @@
 							</ul>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
