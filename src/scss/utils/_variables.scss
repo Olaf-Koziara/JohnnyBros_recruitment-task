@@ -2,13 +2,16 @@
 $white: #fff;
 
 $blue-100: #ebefff;
+$blue-300: #ced8ff;
 $blue-500: #4a6cf7;
 $blue-600: #2951f7;
 
 $gray-50: #f8fafc;
 $gray-300: #cbd5e1;
+$gray-500: #334155;
 $gray-900: #0f172a;
 
+$placeholder-color: $gray-500;
 // Spacer
 $spacer: 8px;
 
@@ -40,17 +43,16 @@ $transition-base: 0.2s ease-in-out;
 // Grid
 $grid-breakpoints: (
         xs: 0,
-        md: 799px,
-        lg: 1280px,
+        md: 768px,
+        lg: 1280px
 );
-
 
 $container-max-widths: (
-        md: 1140px,
+        md: 1172px
 );
 
-$name:                                                  xs;
-$flexboxgrid-grid-columns:                              12;
-$flexboxgrid-gutter-width:                              8px;
-$flexboxgrid-outer-margin:                              $flexboxgrid-gutter-width * 2 !default;
-$gutter-compensation:                                   $flexboxgrid-outer-margin * .5 * -1 !default;
+$name: xs;
+$flexboxgrid-grid-columns: 12;
+$flexboxgrid-gutter-width: 8px;
+$flexboxgrid-outer-margin: $flexboxgrid-gutter-width * 2 !default;
+$gutter-compensation: $flexboxgrid-outer-margin * 0.5 * -1 !default;
