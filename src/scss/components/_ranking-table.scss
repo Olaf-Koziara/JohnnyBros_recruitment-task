@@ -12,6 +12,7 @@
       background-image: url("../../assets/page-header.webp");
       background-repeat: no-repeat;
       background-size: cover;
+      background-position: center;
       gap: $spacer * 3;
       padding: $spacer * 4 $spacer * 3;
       border-radius: 0 0 $border-radius $border-radius;
@@ -40,7 +41,6 @@
     font-size: 1rem;
     line-height: 1.5em;
     border: $border-width solid $border-color;
-    background: url("../../assets/icons/search-icon.svg") no-repeat right 16px center / $icon-size $icon-size;
     background-color: white;
     width: 100%;
     color: $placeholder-color;
@@ -87,9 +87,6 @@
       display: none;
       background: none;
       border: none;
-      font-size: 1rem;
-      line-height: 1.5em;
-      color: $gray-300;
       cursor: pointer;
       &:focus {
         outline: none;
