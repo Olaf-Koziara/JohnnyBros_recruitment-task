@@ -1,3 +1,99 @@
 .ranking-table {
+  width: 100%;
+  @include element("header") {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: $blue-100;
+    padding-top: $spacer * 2;
+    gap: $spacer * 2;
+    @include media-breakpoint-up(md) {
+      background-image: url("../../assets/page-header.webp");
+      background-repeat: no-repeat;
+      background-size: cover;
+      gap: $spacer * 3;
+      padding: $spacer * 4 $spacer * 3;
+      border-radius: 0 0 $border-radius $border-radius;
+      background-color: transparent;
+    }
+    @include media-breakpoint-up(lg) {
+      background-size: 100% 100%;
+    }
+  }
+  @include element("logo") {
+    @include media-breakpoint-up(md) {
+      display: none;
+    }
+  }
+
+  @include element("title") {
+    font-size: 2rem;
+    line-height: 1.25em;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  @include element("search") {
+    padding: $spacer $spacer $spacer $spacer * 2;
+    border-radius: 4px;
+    font-size: 1rem;
+    line-height: 1.5em;
+    border: $border-width solid $border-color;
+    background: url("../../assets/icons/search-icon.svg") no-repeat right 16px center / $icon-size $icon-size;
+    background-color: white;
     width: 100%;
+    color: $placeholder-color;
+    display: flex;
+    justify-content: space-between;
+    @include media-breakpoint-up(md) {
+      border-radius: 8px;
+    }
+
+    &-wrapper {
+      position: relative;
+      background-color: $blue-300;
+      border-radius: 0 0 $border-radius * 0.5 $border-radius * 0.5;
+      padding: $spacer;
+      flex-shrink: 0;
+      width: 100%;
+      @include media-breakpoint-up(md) {
+        padding: 0;
+        background-color: transparent;
+      }
+    }
+    &-input {
+      width: 100%;
+      border: 0;
+
+      &::placeholder {
+        color: $placeholder-color;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &-icon {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      fill: $gray-300;
+    }
+    &-clear {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1rem;
+      line-height: 1.5em;
+      color: $gray-300;
+      cursor: pointer;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
 }
