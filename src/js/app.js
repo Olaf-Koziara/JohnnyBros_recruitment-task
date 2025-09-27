@@ -35,6 +35,7 @@ class PremierLeagueApp {
     this.#handleSearchInput();
     this.#renderSkeleton(5).then(() => {
       const needsScroll = window.innerHeight < document.body.scrollHeight;
+      console.log(window.innerHeight, document.body.scrollHeight, needsScroll);
       if (needsScroll) {
         this.#initializeFetchOnScroll();
         return;
@@ -82,22 +83,21 @@ class PremierLeagueApp {
     this.#render();
   }
 
-  #createTableItem(team) {
+  #createTableItem(team, additionalClasses = "") {
     const listItem = document.createElement("li");
-    const className = team
-      ? "ranking-table__item"
-      : "ranking-table__item--skeleton";
-    listItem.classList.add(className);
+    const classNames = `ranking-table__item ${team ? "" : "ranking-table__item--skeleton"} ${additionalClasses}`.split(" ").filter(Boolean);
+
+    listItem.classList.add(...classNames);
     listItem.innerHTML = rankingTableItemTemplate(team);
     return listItem;
   }
 
-  #renderSkeleton(count) {
+  #renderSkeleton(count, options = {}) {
     return new Promise((resolve) => {
       this.#rankingTableList.innerHTML = "";
       for (let i = 0; i < count; i++) {
         const skeletonItem = this.#createTableItem(null);
-        this.#rankingTableList.appendChild(skeletonItem);
+        this.#rankingTableList.appendChild(skeletonItem, options?.animation ? "animation" : undefined);
       }
       resolve();
     });
@@ -112,18 +112,21 @@ class PremierLeagueApp {
   }
 
   #initializeFetchOnScroll() {
-    const eventListener = window.addEventListener("scroll", () => {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      if (scrollTop > 0) {
-        this.#fetchData();
-        window.removeEventListener("scroll", eventListener);
-      }
-    });
+    window.addEventListener(
+      "scroll",
+      () => {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        if (scrollTop > 0) {
+          this.#fetchData();
+        }
+      },
+      { once: true }
+    );
   }
   #setIsLoading(value) {
     this.#isLoading = value;
     if (value) {
-      this.#renderSkeleton(5);
+      this.#renderSkeleton(5, { animation: true });
     }
   }
 }
