@@ -21,12 +21,11 @@ class PremierLeagueApp {
   constructor(containerSelector) {
     this.#container = document.querySelector(containerSelector);
     if (!this.#container) throw new Error("Container element not found");
-    const { form, searchInput, rankingTableList } = this.#setupDOM();
+    const { form, searchInput, rankingTableList, } = this.#setupDOM();
     this.#form = form;
     this.#searchInput = searchInput;
     this.#rankingTableList = rankingTableList;
     this.#rankingService = new RankingService();
-
     this.#init();
   }
 
@@ -35,7 +34,6 @@ class PremierLeagueApp {
     this.#handleSearchInput();
     this.#renderSkeleton(5).then(() => {
       const needsScroll = window.innerHeight < document.body.scrollHeight;
-      console.log(window.innerHeight, document.body.scrollHeight, needsScroll);
       if (needsScroll) {
         this.#initializeFetchOnScroll();
         return;
@@ -47,6 +45,10 @@ class PremierLeagueApp {
   #setupDOM() {
     const form = this.#container.querySelector(".ranking-table__search");
     const searchInput = form?.querySelector(".ranking-table__search-input");
+
+    if (!form || !searchInput) {
+      throw new Error("Form or input elements not found");
+    }
     const rankingTableList = this.#container.querySelector(
       ".ranking-table__list"
     );
@@ -67,10 +69,12 @@ class PremierLeagueApp {
       this.#filteredTeams = await this.#rankingService.search(searchTerm);
       this.#setIsLoading(false);
       this.#render();
+
     }, 300);
     this.#searchInput.addEventListener("input", (e) => {
       const searchTerm = e.target.value.toLowerCase();
       debouncedSearch(searchTerm);
+      this.#form.classList.toggle("ranking-table__search--active", !!searchTerm);
     });
   }
 
