@@ -1,14 +1,25 @@
 // Insert typography styles here
 @font-face {
-  font-family: 'Inter';
-  src: url('../../fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+  font-family: "Inter";
+  src: url("../../fonts/Inter-VariableFont_opsz,wght.ttf") format("truetype");
   font-weight: 400 700; /* zakres wag */
   font-style: normal;
   font-display: swap;
 }
 
-h1, h2, h3, h4, h5, h6, p,
-.h1, .h2, .h3, .h4, .h5, .h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
   margin-top: 0;
   margin-bottom: $spacer * 2;
 
@@ -17,12 +28,14 @@ h1, h2, h3, h4, h5, h6, p,
   }
 }
 
-h3, .h3 {
+h3,
+.h3 {
   font-weight: $font-weight-semibold;
   font-size: $font-size-lg;
 }
 
-ul, ol {
+ul,
+ol {
   padding-left: 0;
 }
 
@@ -30,7 +43,7 @@ li {
   margin: 0 0 $spacer $spacer * 2.5;
 
   &::marker {
-    color: rgba($gray-900, .6);
+    color: rgba($gray-900, 0.6);
   }
 }
 
@@ -39,9 +52,9 @@ b {
 }
 
 code {
-  background: rgba($blue-500, .15);
-  padding: $spacer * .25 $spacer * .5;
-  border-radius: $border-radius * .25;
+  background: rgba($blue-500, 0.15);
+  padding: $spacer * 0.25 $spacer * 0.5;
+  border-radius: $border-radius-sm;
   font-size: 90%;
 }
 
