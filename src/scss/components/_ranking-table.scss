@@ -8,6 +8,7 @@
     background-color: $blue-100;
     padding-top: $spacer * 2;
     gap: $spacer * 2;
+    border-radius: 0 0 $border-radius * 0.5 $border-radius * 0.5;
     @include media-breakpoint-up(md) {
       background-image: url("../../assets/page-header.webp");
       background-repeat: no-repeat;
@@ -37,7 +38,7 @@
 
   @include element("search") {
     padding: $spacer $spacer $spacer $spacer * 2;
-    border-radius: 4px;
+    border-radius: $border-radius * 0.5;
     font-size: 1rem;
     line-height: 1.5em;
     border: $border-width solid $border-color;
