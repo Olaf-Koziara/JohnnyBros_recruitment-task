@@ -18,7 +18,8 @@ class RankingService {
     }
   }
 
-  search(term) {
+  async search(term) {
+    if (this.#data.length === 0) await this.getAll();
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve(this.#performSearch(term));
@@ -27,6 +28,7 @@ class RankingService {
   }
 
   #performSearch(term) {
+
     if (!term) return this.#data;
     return this.#data.filter((item) =>
       item.strTeam?.toLowerCase().includes(term.toLowerCase())

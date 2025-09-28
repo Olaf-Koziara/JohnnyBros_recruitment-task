@@ -1,0 +1,43 @@
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@mixin fade-in($duration: 0.5s, $timing: ease-in-out) {
+    animation: fade-in $duration $timing;
+}
+
+@mixin fade-out($duration: 0.5s, $timing: ease-in-out) {
+    animation: fade-out $duration $timing;
+}
+
+@mixin pulse($duration: 1s, $scale: 1.05, $timing: ease-in-out, $iteration: infinite) {
+    @keyframes pulse {
+        0% {
+            box-shadow: $box-shadow-elevation;
+            transform: scale(1);
+        }
+        50% {
+            box-shadow: $box-shadow-elevation-spread;
+            transform: scale($scale);
+        }
+        100% {
+            box-shadow: $box-shadow-elevation;
+            transform: scale(1);
+        }
+    }
+
+    animation: pulse $duration $timing $iteration;
+}
