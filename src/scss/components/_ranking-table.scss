@@ -21,25 +21,21 @@
       gap: $spacer * 3;
       padding: $spacer * 4 $spacer * 3;
     }
-
     @include media-breakpoint-up(lg) {
       background-size: 100% 100%;
     }
   }
-
   @include element("logo") {
     @include media-breakpoint-up(md) {
       display: none;
     }
   }
-
   @include element("title") {
     font-size: 2rem;
     font-weight: bold;
     line-height: 1.25em;
     margin: 0;
   }
-
   @include element("search") {
     background-color: $blue-300;
     border-radius: 0 0 $border-radius-md $border-radius-md;
@@ -52,91 +48,83 @@
       background-color: transparent;
       padding: 0;
     }
-
     &--active {
       .ranking-table__search-icon {
         display: none;
       }
-
       .ranking-table__search-clear-button {
         display: flex;
       }
     }
-
     &-input {
-      border: 0;
-      width: 100%;
       background-color: white;
-      outline: $border-width solid $border-color;
+      border: 0;
       border-radius: $border-radius-md;
       color: $placeholder-color;
       font-size: 1rem;
       line-height: 1.5em;
+      outline: $border-width solid $border-color;
       padding: $spacer $spacer $spacer $spacer-lg;
+      width: 100%;
       width: 100%;
 
       @include media-breakpoint-up(md) {
         border-radius: 8px;
       }
-
       &::placeholder {
         color: $placeholder-color;
       }
-
       &:focus {
         outline-color: $blue-500;
       }
     }
-
     &-icon,
     &-clear-button {
       fill: $gray-300;
       height: $icon-size;
-      width: $icon-size;
       position: absolute;
       right: $spacer-lg;
       top: 50%;
       transform: translateY(-50%);
+      width: $icon-size;
     }
-
     &-clear-button {
+      align-items: center;
       background: none;
       border: none;
       cursor: pointer;
       display: none;
       justify-content: center;
-      align-items: center;
 
       &:focus {
         outline: none;
       }
     }
   }
-
   @include element("list") {
     display: flex;
     flex-direction: column;
     gap: $spacer-lg;
     list-style: none;
   }
-
   @include element("message") {
+    border-radius: $border-radius-lg;
+    box-shadow: $box-shadow-elevation;
     color: $gray-500;
     font-size: $font-size-base;
-    text-align: center;
-    box-shadow: $box-shadow-elevation;
-    border-radius: $border-radius-lg;
     margin: 0;
     padding: $spacer * 3;
+    text-align: center;
+
     &::before {
-      content: "";
       background-image: url("../../assets/icons/error.svg");
       background-repeat: no-repeat;
       background-size: contain;
+      content: "";
       display: block;
+      height: $icon-size-lg;
       margin: 0 auto $spacer-lg;
       width: $icon-size-lg;
-      height: $icon-size-lg;
     }
     &--not-found {
       &::before {
