@@ -1,14 +1,19 @@
-export const rankingTableItem = (team=null, additionalClasses = '') => {
+export const rankingTableItem = (team = null, additionalClasses = '') => {
   const statsSum =
     Number(team?.intWin ?? 0) +
     Number(team?.intDraw ?? 0) +
     Number(team?.intLoss ?? 0);
-    
+
   const countStatRatio = (stat) => {
     if (statsSum === 0) return 0;
     return ((Number(stat) / statsSum) * 100).toFixed(1);
   };
-  
+
+  const handleImageError = (img) => {
+    img.onerror = null;
+    img.src = '/assets/icons/ball.svg';
+  };
+
   const formResultClasses = {
     W: "ranking-table__item-form-result--win",
     D: "ranking-table__item-form-result--draw",
@@ -18,7 +23,9 @@ export const rankingTableItem = (team=null, additionalClasses = '') => {
   const teamInfoTemplate = `
     <div class="ranking-table__item-team-info">
       <div class="ranking-table__item-badge-wrapper">
-        <img src="${team?.strBadge ?? ""}" alt="${team?.strTeam ?? ""} logo" class="ranking-table__item-badge"/>
+        <img src="${team?.strBadge ?? "/assets/icons/ball.svg"}" 
+             alt="${team?.strTeam ?? ""} logo" 
+             class="ranking-table__item-badge"/>
       </div>
       <div class="ranking-table__item-name">${team?.strTeam ?? ""}</div>
     </div>`;
@@ -42,8 +49,8 @@ export const rankingTableItem = (team=null, additionalClasses = '') => {
       Form:
       <div class="ranking-table__item-form">
         ${team?.strForm?.split("").reverse().map((result) =>
-          `<span class="ranking-table__item-form-result ${formResultClasses[result]}">${result}</span>`
-        ).join('')}
+    `<span class="ranking-table__item-form-result ${formResultClasses[result]}">${result}</span>`
+  ).join('')}
       </div>
     </div>`;
 
@@ -82,5 +89,6 @@ export const rankingTableItem = (team=null, additionalClasses = '') => {
   const classNames = `ranking-table__item ${team ? "" : "ranking-table__item--skeleton"} ${additionalClasses}`.split(" ").filter(Boolean);
   listItem.classList.add(...classNames);
   listItem.innerHTML = DOMPurify.sanitize(template);
+  listItem.querySelector('.ranking-table__item-badge').onerror = (e) => handleImageError(e.target);
   return listItem;
 };
