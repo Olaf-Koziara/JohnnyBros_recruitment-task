@@ -1,7 +1,7 @@
-import initInlineSVG from "./inline-svg.js";
-import RankingService from "./services/ranking-service.js";
 import { rankingTableItem } from "./components/ranking-table-item.component.js";
 import { rankingTableMessage } from "./components/ranking-table-message.component.js";
+import initInlineSVG from "./inline-svg.js";
+import RankingService from "./services/ranking-service.js";
 import { debounce } from "./utils.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -60,8 +60,10 @@ class PremierLeagueRankingApp {
     this.#form.addEventListener("reset", (e) => {
       e.preventDefault();
       this.#searchInput.value = "";
-      this.#filteredTeams = this.#teams;
-      this.#render();
+      this.#fetchData();
+      // Or this way if we want to avoid another fetch
+      // this.#filteredTeams = this.#teams;
+      // this.#render();
       this.#form.classList.remove("ranking-table__search--active");
     });
   }
@@ -69,7 +71,7 @@ class PremierLeagueRankingApp {
   async #handleSearchInput() {
     const debouncedSearch = debounce(async (searchTerm) => {
       if (this.#teams.length === 0) await this.#fetchData();
-      if (this.#teams.length === 0) return; 
+      if (this.#teams.length === 0) return;
       this.#setIsLoading(true);
       this.#filteredTeams = await this.#rankingService.search(searchTerm);
       this.#setIsLoading(false);
@@ -89,17 +91,17 @@ class PremierLeagueRankingApp {
 
   async #fetchData() {
     try {
-    const data = await this.#rankingService.getAll();
-    if (data) {
-      this.#teams = data;
-    }
-    this.#filteredTeams = data;
-    this.#render();
+      const data = await this.#rankingService.getAll();
+      if (data) {
+        this.#teams = data;
+      }
+      this.#filteredTeams = data;
+      this.#render();
     } catch (error) {
       this.#renderError(error.message);
       return;
     }
-  
+
   }
 
   #renderSkeleton(count, options = {}) {
@@ -112,10 +114,10 @@ class PremierLeagueRankingApp {
       resolve();
     });
   }
-#renderError() {
+  #renderError() {
     this.#rankingTableList.innerHTML = "";
-  this.#rankingTableList.appendChild(rankingTableMessage('There was a problem. Please try again later.'));
-}
+    this.#rankingTableList.appendChild(rankingTableMessage('There was a problem. Please try again later.'));
+  }
   #render() {
     this.#rankingTableList.innerHTML = "";
     this.#filteredTeams.forEach((team) => {
