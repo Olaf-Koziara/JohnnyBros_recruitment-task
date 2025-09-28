@@ -1,0 +1,314 @@
+.ranking-table__item {
+    border-radius: $border-radius-lg;
+    box-shadow: $box-shadow-elevation;
+    margin: 0;
+    @include fade-in();
+
+    @include media-breakpoint-up(md) {
+        display: grid;
+        grid-template-columns: auto 160px;
+        align-items: center;
+    }
+
+    &-header {
+        align-items: start;
+        display: flex;
+        flex-grow: 1;
+        gap: $spacer-lg;
+        padding: $spacer-lg $spacer-lg $spacer-lg 0;
+    }
+
+    &-ranking {
+        background-color: $gray-200;
+        border-radius: 0 $border-radius-lg $border-radius-lg 0;
+        color: $gray-900;
+        font-size: $font-size-xs;
+        line-height: calc(1em + 1em / 3);
+        margin-top: $spacer-lg;
+        margin-right: 4px;
+        padding: $spacer * 0.5 0;
+        text-align: center;
+        width: 32px;
+        flex-shrink: 0;
+    }
+
+    &:nth-of-type(-n + 3):not(.ranking-table__item--skeleton) {
+        .ranking-table__item-ranking {
+            background-color: $blue-500;
+            color: $gray-100;
+        }
+    }
+
+    &-team {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: $spacer-lg;
+    }
+
+    &-team-info {
+        align-items: center;
+        display: flex;
+        gap: $spacer-lg;
+        margin-bottom: $spacer-lg;
+
+        @include media-breakpoint-up(md) {
+            margin-bottom: 0;
+        }
+    }
+
+    &-badge {
+        height: 100%;
+        object-fit: contain;
+        width: 100%;
+    }
+
+    &-badge-wrapper {
+        height: $icon-size-lg;
+        width: $icon-size-lg;
+        flex-shrink: 0;
+        border: $border-width solid $border-color;
+        border-radius: $border-radius-pill;
+        padding: 3px;
+    }
+
+    &-name {
+        font-size: $font-size-base;
+        font-weight: $font-weight-semibold;
+        line-height: $line-height-base;
+    }
+
+    &-statistics {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        gap: $spacer;
+        margin-left: auto;
+
+        @media screen and (min-width: 900px) {
+            flex-direction: row;
+            align-items: center;
+        }
+    }
+
+    &-statistics-bar {
+        border-radius: $border-radius-md;
+        display: flex;
+        overflow: hidden;
+        width: 100%;
+        max-width: 280px;
+
+        @include media-breakpoint-up(sm) {
+            min-width: 220px;
+        }
+
+        @include media-breakpoint-up(md) {
+            width: 262px;
+        }
+
+        @media screen and (min-width: 900px) {
+            width: 224px;
+        }
+
+        &-fill {
+            background-color: $green-400;
+            height: 4px;
+
+            &--draw {
+                background-color: $gray-400;
+            }
+
+            &--loss {
+                background-color: $red-400;
+            }
+        }
+    }
+
+    &-statistics-numbers {
+        color: $gray-500;
+        display: flex;
+        font-size: $font-size-sm;
+        gap: $spacer-lg;
+        justify-content: end;
+        text-align: end;
+    }
+
+    &-points {
+        background-color: $blue-500;
+        border-radius: $border-radius-md;
+        color: white;
+        font-size: $font-size-lg;
+        font-weight: $font-weight-bold;
+        line-height: $line-height-base;
+        margin-bottom: $spacer-lg;
+        margin-left: auto;
+        margin-right: $spacer-lg;
+        padding: $spacer;
+        text-align: center;
+        width: 144px;
+
+        @include media-breakpoint-up(md) {
+            margin-bottom: 0;
+            margin-left: 0;
+        }
+    }
+
+    &-footer {
+        column-gap: $spacer;
+        display: grid;
+        grid-template-columns: 220px repeat(3, 160px);
+        overflow-x: auto;
+        padding: $spacer $spacer-lg;
+        border-top: 1px solid $border-color;
+
+        @include media-breakpoint-up(md) {
+            grid-column: 1 / -1;
+            grid-template-columns: 340px repeat(3, minmax(160px, 248px));
+        }
+    }
+
+    &-form-wrapper,
+    &-goals {
+        align-items: center;
+        background-color: $blue-100;
+        border-radius: $border-radius-md;
+        display: flex;
+        justify-content: center;
+        padding: $spacer-sm $spacer-lg;
+    }
+
+    &-form {
+        display: flex;
+        gap: $spacer-sm;
+
+        &-wrapper {
+            gap: $spacer;
+            height: 52px;
+        }
+
+        &-result {
+            align-items: center;
+            background-color: $gray-400;
+            border-radius: 100%;
+            color: $gray-500;
+            display: inline-flex;
+            font-size: $font-size-xs;
+            font-weight: $font-weight-bold;
+            height: 20px;
+            justify-content: center;
+            width: 20px;
+
+            &--win {
+                background-color: $green-400;
+            }
+
+            &--loss {
+                background-color: $red-400;
+            }
+        }
+    }
+
+    &-goals {
+        background-color: $blue-100;
+        flex-direction: column;
+        gap: $spacer-sm;
+        font-size: $font-size-xs;
+        line-height: 1.333em;
+
+        &-value {
+            color: $blue-600;
+            font-size: $font-size-lg;
+            font-weight: $font-weight-bold;
+        }
+    }
+
+    &--skeleton {
+        @include pulse(1.8s);
+
+        @include media-breakpoint-up(md) {
+            @include pulse(1.8s);
+        }
+
+        & .ranking-table__item-ranking,
+        & .ranking-table__item-name,
+        & .ranking-table__item-statistics-bar,
+        & .ranking-table__item-statistics-numbers,
+        & .ranking-table__item-points,
+        & .ranking-table__item-form-result,
+        & .ranking-table__item-goals-value,
+        & .ranking-table__item-badge-wrapper {
+            background: $gray-200;
+            color: transparent;
+            border: 0;
+        }
+
+        & .ranking-table__item-name,
+        & .ranking-table__item-statistics-bar,
+        & .ranking-table__item-statistics-numbers {
+            border-radius: $border-radius-pill;
+        }
+
+        & .ranking-table__item-statistics-bar,
+        & .ranking-table__item-statistics-numbers {
+            height: 12px;
+        }
+
+        & .ranking-table__item-ranking {
+            height: 24px;
+            width: 32px;
+        }
+
+        & .ranking-table__item-name {
+            height: 24px;
+            width: 139px;
+        }
+
+        & .ranking-table__item-badge {
+            display: none;
+        }
+
+        & .ranking-table__item-badge-wrapper {
+            border-radius: 100%;
+        }
+
+        & .ranking-table__item-statistics {
+            @include media-breakpoint-up(md) {
+                display: flex;
+                flex-direction: column;
+                align-items: end;
+            }
+
+            @include media-breakpoint-up(lg) {
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+
+        & .ranking-table__item-statistics-bar {
+            width: 100%;
+
+            @include media-breakpoint-up(md) {
+                width: 262px;
+            }
+
+            @include media-breakpoint-up(lg) {
+                width: 224px;
+            }
+        }
+
+        & .ranking-table__item-statistics-numbers {
+            margin-left: auto;
+            width: 114px;
+        }
+
+        & .ranking-table__item-points {
+            height: 56px;
+        }
+
+        & .ranking-table__item-footer {
+            display: none;
+        }
+    }
+}
