@@ -1,8 +1,9 @@
 class RankingService {
-  #apiEndpoint =
-    "https://www.thesportsdb.com/api/v1/json/123/lookuptable.php?l=4328&s=2024-2025";
   #data = [];
-
+  #apiEndpoint = '';
+  constructor(endpoint) {
+    this.#apiEndpoint = endpoint;
+  }
   async getAll() {
     try {
       const response = await fetch(this.#apiEndpoint);
@@ -13,17 +14,15 @@ class RankingService {
       this.#data = data.table;
       return data.table;
     } catch (error) {
-      console.error("Error fetching ranking data:", error);
-      return [];
+      throw new Error("Failed to fetch ranking data: " + error.message);
     }
   }
 
   async search(term) {
-    if (this.#data.length === 0) await this.getAll();
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve(this.#performSearch(term));
-      }, 700);
+      }, 350);  // Simulate network delay
     });
   }
 
