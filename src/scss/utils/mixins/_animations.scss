@@ -23,19 +23,16 @@
     animation: fade-out $duration $timing;
 }
 
-@mixin pulse($duration: 1s, $scale: 1.05, $timing: ease-in-out, $iteration: infinite) {
+@mixin pulse($duration: 1s, $opacity: 0.5, $timing: ease-in-out, $iteration: infinite) {
     @keyframes pulse {
         0% {
-            box-shadow: $box-shadow-elevation;
-            transform: scale(1);
+            filter: opacity(1);
         }
         50% {
-            box-shadow: $box-shadow-elevation-spread;
-            transform: scale($scale);
+            filter: opacity($opacity);
         }
         100% {
-            box-shadow: $box-shadow-elevation;
-            transform: scale(1);
+            filter: opacity(1);
         }
     }
 
